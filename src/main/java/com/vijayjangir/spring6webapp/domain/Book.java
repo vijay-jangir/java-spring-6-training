@@ -18,6 +18,16 @@ public class Book {
     private String title;
     private String isbn;
 
+    @Override
+    public String toString() {
+        return "Book{" +
+            "id=" + id +
+            ", title='" + title + '\'' +
+            ", isbn='" + isbn + '\'' +
+            ", authors=" + authors +
+            '}';
+    }
+
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
         inverseJoinColumns = @JoinColumn(name = "author_id"))
