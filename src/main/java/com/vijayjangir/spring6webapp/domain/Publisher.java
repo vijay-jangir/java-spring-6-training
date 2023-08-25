@@ -18,8 +18,8 @@ public class Publisher {
     private String name;
     private String country;
 
-//    @OneToMany(mappedBy = "publishers")
-//    private Set<Book> books = new HashSet<>();
+    @OneToMany(mappedBy = "publisher")
+    private Set<Book> books = new HashSet<>();
 
     @Override
     public String toString() {
@@ -27,7 +27,7 @@ public class Publisher {
             "id=" + id +
             ", name='" + name + '\'' +
             ", country='" + country + '\'' +
-//            ", books=" + books +
+            ", books=" + books +
             '}';
     }
 
@@ -72,11 +72,11 @@ public class Publisher {
         this.country = country;
     }
 
-//    public Set<Book> getBooks() {
-//        return books;
-//    }
-//
-//    public void setBooks(Set<Book> books) {
-//        this.books = books;
-//    }
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
 }
