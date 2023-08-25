@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,9 @@ public class Author {
     private Long id;
     private String firstName;
     private String lastName;
+
+    @ManyToMany(mappedBy = "authors")
+    private Set<Book> books = new HashSet<>();
 
     @Override
     public String toString() {
@@ -42,9 +46,6 @@ public class Author {
     public int hashCode() {
         return getId() != null ? getId().hashCode() : 0;
     }
-
-    @ManyToMany(mappedBy = "authors")
-    private Set<Book> books;
 
     public Set<Book> getBooks() {
         return books;

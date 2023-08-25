@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,6 +19,11 @@ public class Book {
     private String title;
     private String isbn;
 
+    @ManyToMany
+    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private Set<Author> authors = new HashSet<>();
+
     @Override
     public String toString() {
         return "Book{" +
@@ -27,11 +33,6 @@ public class Book {
             ", authors=" + authors +
             '}';
     }
-
-    @ManyToMany
-    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
-        inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private Set<Author> authors;
 
     public Set<Author> getAuthors() {
         return authors;
